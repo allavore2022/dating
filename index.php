@@ -1,4 +1,9 @@
 <?php
+/*
+ * Alisa Llavore
+ * January 27, 2021
+ * This is the control page for my dating website
+ */
 
 //Turn on error reporting
 ini_set('display_errors', 1);
