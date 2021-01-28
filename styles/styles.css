@@ -2,3 +2,8 @@
     height: 600px;
     width: 600px;
 }
+
+#quoteHolder {
+    margin-left: 5%;
+    margin-right: 5%;
+}
