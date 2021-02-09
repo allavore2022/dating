@@ -23,7 +23,41 @@
 </nav>
 
 <div class="container">
+    <div class ="row">
+        <div class="col">
+            <h1>Profile</h1>
+            <hr>
+            <form method="post">
 
+                <!-- Email-->
+                <div class="form-group">
+                    <label for="email"><b>Email </b></label>
+                    <input type="email" class="form-control" id="email" name = "email" placeholder="Enter your email">
+                </div>
+
+                <!-- State -->
+                <div class="form-group">
+                    <label for="state"><b>State: </b></label>
+                    <input type="tezt" class="form-control" id="state" name = "state" placeholder="Enter your state">
+                </div>
+
+                <!-- Seeking -->
+                <div class="form-group">
+                    <p><b>Seeking: </b></p>
+                    <input type="radio" id="male" name="gender" value="male">
+                    <label class="radio-inline" for="male">Male</label>
+
+                    <input type="radio" id="female" name="gender" value="female">
+                    <label class="radio-inline" for="female">Female</label>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="col">
+            <button type="button" class="btn btn-info btn-lg rounded">Next</button>
+        </div>
+    </div>
 </div>
 
 <!-- Optional JavaScript -->

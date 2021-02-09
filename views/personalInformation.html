@@ -23,7 +23,51 @@
 </nav>
 
 <div class="container">
+    <div class ="row">
+        <div class="col">
+            <h1>Personal Information</h1>
+            <hr>
+            <form method="post">
+                <!-- First Name -->
+                <div class="form-group">
+                    <label for="fname"><b>First Name: </b> </label>
+                    <input type="text" class="form-control" id="fname" name = "fname" placeholder="Enter your first name">
+                </div>
 
+                <!-- Last Name -->
+                <div class="form-group">
+                    <label for="lname"><b>Last Name: </b></label>
+                    <input type="text" class="form-control" id="lname" name = "lname" placeholder="Enter your last name">
+                </div>
+
+                <!-- Age -->
+                <div class="form-group">
+                    <label for="age"><b>Age: </b></label>
+                    <input type="number" class="form-control" id="age" name = "age" placeholder="Enter your age">
+                </div>
+
+                <!-- Gender -->
+                <div class="form-group">
+                    <p><b>Gender: </b></p>
+                    <input type="radio" id="male" name="gender" value="male">
+                    <label class="radio-inline" for="male">Male</label>
+
+                    <input type="radio" id="female" name="gender" value="female">
+                    <label class="radio-inline" for="female">Female</label>
+                </div>
+
+                <!-- Phone number -->
+                <div class="form-group">
+                    <label for="pnumber"><b>Age: </b></label>
+                    <input type="tel" class="form-control" id="pnumber" name = "pnumber" placeholder="Enter your phone number">
+                </div>
+            </form>
+        </div>
+
+        <div class="col">
+            <button type="button" class="btn btn-info btn-lg rounded">Next</button>
+        </div>
+    </div>
 </div>
 
 <!-- Optional JavaScript -->
