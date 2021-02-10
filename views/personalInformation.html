@@ -18,66 +18,66 @@
     <title>Animal Crossing Dating</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Animal Crossing Dating Website</a>
-</nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Animal Crossing Dating Website</a>
+    </nav>
 
-<div class="container">
-    <h1>Personal Information</h1>
-    <hr>
-    <form method="post" action="profile">
-    <div class ="row">
-        <div class="col-8">
-                <!-- First Name -->
-                <div class="form-group">
-                    <label for="fname"><b>First Name: </b> </label>
-                    <input type="text" class="form-control" id="fname" name = "fname" placeholder="Enter your first name">
+    <div class="container">
+        <h1>Personal Information</h1>
+        <hr>
+        <form method="post" action="profile">
+            <div class ="row">
+                <div class="col-8">
+                        <!-- First Name -->
+                        <div class="form-group">
+                            <label for="fname"><b>First Name: </b> </label>
+                            <input type="text" class="form-control" id="fname" name = "fname" placeholder="Enter your first name">
+                        </div>
+
+                        <!-- Last Name -->
+                        <div class="form-group">
+                            <label for="lname"><b>Last Name: </b></label>
+                            <input type="text" class="form-control" id="lname" name = "lname" placeholder="Enter your last name">
+                        </div>
+
+                        <!-- Age -->
+                        <div class="form-group">
+                            <label for="age"><b>Age: </b></label>
+                            <input type="number" class="form-control" id="age" name = "age" placeholder="Enter your age">
+                        </div>
+
+                        <!-- Gender -->
+                        <div class="form-group">
+                            <p><b>Gender: </b></p>
+                            <input type="radio" id="male" name="gender" value="male">
+                            <label class="radio-inline" for="male">Male</label>
+
+                            <input type="radio" id="female" name="gender" value="female">
+                            <label class="radio-inline" for="female">Female</label>
+                        </div>
+
+                        <!-- Phone number -->
+                        <div class="form-group">
+                            <label for="pnumber"><b>Phone Number: </b></label>
+                            <input type="tel" class="form-control" id="pnumber" name = "pnumber" placeholder="Enter your phone number">
+                        </div>
+
+                </div>
+                <div class="col-4">
+                    <div class="alert alert-secondary" role="alert">
+                        <b>Note: </b>All information entered is protected by out <a href="">privacy policy.</a>
+                        Profile information can only be viewed by others with your permission.
+                    </div>
                 </div>
 
-                <!-- Last Name -->
-                <div class="form-group">
-                    <label for="lname"><b>Last Name: </b></label>
-                    <input type="text" class="form-control" id="lname" name = "lname" placeholder="Enter your last name">
+                <div class="col text-right">
+                    <button type="submit" class="btn btn-info btn-lg rounded">Next</button>
                 </div>
-
-                <!-- Age -->
-                <div class="form-group">
-                    <label for="age"><b>Age: </b></label>
-                    <input type="number" class="form-control" id="age" name = "age" placeholder="Enter your age">
-                </div>
-
-                <!-- Gender -->
-                <div class="form-group">
-                    <p><b>Gender: </b></p>
-                    <input type="radio" id="male" name="gender" value="male">
-                    <label class="radio-inline" for="male">Male</label>
-
-                    <input type="radio" id="female" name="gender" value="female">
-                    <label class="radio-inline" for="female">Female</label>
-                </div>
-
-                <!-- Phone number -->
-                <div class="form-group">
-                    <label for="pnumber"><b>Age: </b></label>
-                    <input type="tel" class="form-control" id="pnumber" name = "pnumber" placeholder="Enter your phone number">
-                </div>
-
-        </div>
-        <div class="col-4">
-            <div class="alert alert-secondary" role="alert">
-                <b>Note: </b>All information entered is protected by out <a href="">privacy policy.</a>
-                Profile information can only be viewed by others with your permission.
             </div>
-        </div>
-
-        <div class="col text-right">
-            <button type="submit" class="btn btn-info btn-lg rounded">Next</button>
+        </form>
+        <div class="row">
         </div>
     </div>
-    </form>
-    <div class="row">
-    </div>
-</div>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
