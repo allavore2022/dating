@@ -19,7 +19,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Animal Crossing Dating Website</a>
+        <a class="navbar-brand" href="{{ @BASE }}">Animal Crossing Dating Website</a>
     </nav>
 
     <div class="container">
@@ -40,7 +40,9 @@
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <a href="personalInformation"><button type="button" class="btn btn-info btn-lg rounded">Create a Profile!</button></a>
+                    <form method="get" action="personalInformation">
+                        <button type="submit" class="btn btn-info btn-lg rounded">Create a Profile!</button>
+                    </form>
                 </div>
             </div>
             <div class="col">
