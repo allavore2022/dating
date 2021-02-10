@@ -41,5 +41,10 @@ $f3->route('GET /interests', function () {
     echo $view->render('views/interests.html');
 });
 
+//Define a summary route
+$f3->route('POST /summary', function () {
+    $view = new Template();
+    echo $view->render('views/summary.html');
+});
 //Rune fat free
 $f3->run();
