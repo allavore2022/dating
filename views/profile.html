@@ -25,10 +25,9 @@
 <div class="container">
     <h1>Profile</h1>
     <hr>
-    <form method="post">
+    <form method="post" action="interests">
     <div class ="row">
         <div class="col">
-            <form method="post">
 
                 <!-- Email-->
                 <div class="form-group">
@@ -45,14 +44,14 @@
                 <!-- Seeking -->
                 <div class="form-group">
                     <p><b>Seeking: </b></p>
-                    <input type="radio" id="male" name="gender" value="male">
+                    <input type="radio" id="male" name="seeking" value="male">
                     <label class="radio-inline" for="male">Male</label>
 
-                    <input type="radio" id="female" name="gender" value="female">
+                    <input type="radio" id="female" name="seeking" value="female">
                     <label class="radio-inline" for="female">Female</label>
                 </div>
 
-            </form>
+
         </div>
 
         <div class="col">
@@ -63,10 +62,10 @@
 <!--            </div>-->
             <div class="form-group">
                 <label for="bio">Biography </label>
-                <textarea class="form-control rounded-0" id="bio" rows="5"></textarea>
+                <textarea class="form-control rounded-0" id="bio" name="bio" rows="5"></textarea>
             </div>
             <div class="text-right">
-                <a href="interests"><button type="button" class="btn btn-info btn-lg rounded ">Next</button></a>
+                <button type="submit" class="btn btn-info btn-lg rounded ">Next</button>
             </div>
         </div>
     </div>

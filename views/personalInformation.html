@@ -25,10 +25,9 @@
 <div class="container">
     <h1>Personal Information</h1>
     <hr>
-    <form method="post">
+    <form method="post" action="profile">
     <div class ="row">
         <div class="col-8">
-            <form method="post">
                 <!-- First Name -->
                 <div class="form-group">
                     <label for="fname"><b>First Name: </b> </label>
@@ -62,7 +61,7 @@
                     <label for="pnumber"><b>Age: </b></label>
                     <input type="tel" class="form-control" id="pnumber" name = "pnumber" placeholder="Enter your phone number">
                 </div>
-            </form>
+
         </div>
         <div class="col-4">
             <div class="alert alert-secondary" role="alert">
@@ -70,13 +69,14 @@
                 Profile information can only be viewed by others with your permission.
             </div>
         </div>
-    </div>
-    <div class="row">
+
         <div class="col text-right">
-            <a href="profile"><button type="button" class="btn btn-info btn-lg rounded">Next</button></a>
+            <button type="submit" class="btn btn-info btn-lg rounded">Next</button>
         </div>
     </div>
     </form>
+    <div class="row">
+    </div>
 </div>
 
 <!-- Optional JavaScript -->
