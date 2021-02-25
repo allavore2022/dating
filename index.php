@@ -48,7 +48,7 @@ $f3->route('GET|POST /interests', function() {
 });
 
 //Define a summary route
-$f3->route('GET /summary', function() {
+$f3->route('GET|POST /summary', function() {
 
     global $controller;
     $controller->summary();
