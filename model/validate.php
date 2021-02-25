@@ -21,11 +21,11 @@ class Validate
      * @return boolean
      */
     function validFname($fname){
-        return !empty($fname) && cypte_alpha($fname);
+        return !empty($fname) && ctype_alpha($fname);
     }
 
     function validLname($lname){
-        return !empty($lname) && cypte_alpha($lname);
+        return !empty($lname) && ctype_alpha($lname);
     }
 
     /**
@@ -50,7 +50,7 @@ class Validate
      * @return boolean
      */
     function validPhone($phone){
-        if(strlen($phone) > 10 && preg_match('/^[0-9]{10}+$/', $phone)){
+        if(!empty($phone) && preg_match('/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/', $phone)){
             return true;
         }
         return false;
