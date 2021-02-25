@@ -20,8 +20,12 @@ class Validate
      * #param String $name
      * @return boolean
      */
-    function validName($name){
-        return !empty($name) && cypte_alpha($name);
+    function validFname($fname){
+        return !empty($fname) && cypte_alpha($fname);
+    }
+
+    function validLname($lname){
+        return !empty($lname) && cypte_alpha($lname);
     }
 
     /**
@@ -46,7 +50,7 @@ class Validate
      * @return boolean
      */
     function validPhone($phone){
-        if(strlen($phone) > 10 && is_numeric($phone)){
+        if(strlen($phone) > 10 && preg_match('/^[0-9]{10}+$/', $phone)){
             return true;
         }
         return false;
@@ -59,7 +63,7 @@ class Validate
      * @return boolean
      */
     function validEmail($email){
-
+        return !empty($email) && preg_match("/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/", $email);
     }
 
     /**
@@ -69,8 +73,21 @@ class Validate
      * #param list $choices
      * @return boolean
      */
-    function validOutdoor($choices){
+    function validOutdoor($selectedOutdoor){
+        //Get valid condiments from data layer
+        $validOutdoor = $this->_dataLayer->getOutdoor();
 
+        //Check every selected condiment
+        foreach ($selectedOutdoor as $selected) {
+
+            //If the selected condiment is not in the valid list, return false
+            if (!in_array($selected, $validOutdoor)) {
+                return false;
+            }
+        }
+
+        //If we haven't false by now, we're good!
+        return true;
     }
 
     /**
@@ -80,7 +97,20 @@ class Validate
      * #param list $choices
      * @return boolean
      */
-    function validIndoor($choices){
+    function validIndoor($selectedIndoor){
+        //Get valid condiments from data layer
+        $validIndoor = $this->_dataLayer->getIndoor();
 
+        //Check every selected condiment
+        foreach ($selectedIndoor as $selected) {
+
+            //If the selected condiment is not in the valid list, return false
+            if (!in_array($selected, $validIndoor)) {
+                return false;
+            }
+        }
+
+        //If we haven't false by now, we're good!
+        return true;
     }
 }
