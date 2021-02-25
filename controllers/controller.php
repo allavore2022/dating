@@ -17,15 +17,8 @@ class Controller
 
     function personalInformation()
     {
-        $view = new Template();
-        echo $view->render('views/personalInformation.html');
-    }
-
-    function profile()
-    {
         //add global variables
         global $validator;
-        global $dataLayer;
 
         //if the form has been submitted
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -86,23 +79,104 @@ class Controller
         }
 
         $view = new Template();
+        echo $view->render('views/personalInformation.html');
+    }
+
+    function profile()
+    {
+        //add global variables
+        global $validator;
+        global $dataLayer;
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            //get the data from the POST array
+            $userEmail = $_POST['email'];
+            $userState = $_POST['state'];
+            $userSeeking = $_POST['seeking'];
+            $userBio = $_POST['bio'];
+
+            //validate email
+            if($validator->validEmail($userEmail)){
+                $_SESSION['email'] = $userEmail;
+            }
+            //if data is not valid -> set an error in f3 hive
+            else {
+                $this->_f3->set('errors["email"]', "Email must contain an @.");
+            }
+
+            //validate state
+            if(isset($userState)){
+                $_SESSION['state'] = $userState;
+            }
+
+            //validate seeking
+            if(isset($userSeeking)){
+                $_SESSION['seeking'] = $userSeeking;
+            }
+
+            //validate bio
+            if(isset($userBio)){
+                $_SESSION['bio'] = $userBio;
+            }
+
+            //if there are no errors, redirect to /profile
+            if(empty($this->_f3->get('errors'))){
+                $this->_f3->reroute('/interests');
+            }
+        }
+
+        $view = new Template();
         echo $view->render('views/profile.html');
     }
 
     function interests()
     {
-        //add information from profile to session array
-        if(isset($_POST['email'])){
-            $_SESSION['email'] = $_POST['email'];
-        }
-        if(isset($_POST['state'])){
-            $_SESSION['state'] = $_POST['state'];
-        }
-        if(isset($_POST['seeking'])){
-            $_SESSION['seeking'] = $_POST['seeking'];
-        }
-        if(isset($_POST['bio'])){
-            $_SESSION['bio'] = $_POST['bio'];
+        //add global variables
+        global $validator;
+        global $dataLayer;
+
+        //get arrays
+        $this->_f3->set('indoor', $dataLayer->getIndoor());
+        $this->_f3->set('outdoor', $dataLayer->getOutdoor());
+
+        //If the form has been submitted
+        if ($_SERVER['REQUEST_METHOD']=='POST') {
+
+            //If condiments were selected
+            if(isset($_POST['indoor'])) {
+
+                //get interests from post array
+                $userIndoorInterests = $_POST['indoorInterests'];
+                $userOutdoorInterests = $_POST['outdoorInterests'];
+
+                //validate indoor activities
+                if(isset($userIndoorInterests)) {
+                    //Data is valid -> Add to session
+                    if ($validator->validIndoor($userIndoorInterests)) {
+                        $_SESSION['indoorInterests'] = implode(", ", $_POST['indoorInterests']);
+                    } //Data is not valid -> We've been spoofed!
+                    else {
+                        $this->_f3->set('errors["indoor"]', "Go away, evildoer!");
+                    }
+                }
+            }
+
+            //validate outdoor activities
+            if(isset($userOutdoorInterests)) {
+                //Data is valid -> Add to session
+                if ($validator->validOutdoor($userOutdoorInterests)) {
+                    $_SESSION['outdoorInterests'] = implode(", ", $_POST['outdoorInterests']);
+                } //Data is not valid -> We've been spoofed!
+                else {
+                    $this->_f3->set('errors["outdoor"]', "Go away, evildoer!");
+                }
+            }
+
+            //If there are no errors, redirect user to summary page
+            if (empty($this->_f3->get('errors'))) {
+                $this->_f3->reroute('/summary');
+            }
         }
 
         $view = new Template();
@@ -111,13 +185,6 @@ class Controller
 
     function summary()
     {
-        //add information from interest to summary
-        if(isset($_POST['indoorInterests'])) {
-            $_SESSION['indoorInterests'] = implode(", ", $_POST['indoorInterests']);
-        }
-        if(isset($_POST['outdoorInterests'])) {
-            $_SESSION['outdoorInterests'] = implode(", ", $_POST['outdoorInterests']);
-        }
 
         $view = new Template();
         echo $view->render('views/summary.html');
