@@ -78,6 +78,13 @@ class Controller
             }
         }
 
+        //make form sticky
+        $this->_f3->set('userFname', isset($userFname) ? $userFname : "");
+        $this->_f3->set('userLname', isset($userLname) ? $userLname : "");
+        $this->_f3->set('userAge', isset($userAge) ? $userAge : "");
+        $this->_f3->set('userGender', isset($userGender) ? $userGender : "");
+        $this->_f3->set('userPhone', isset($userPhone) ? $userPhone : "");
+
         $view = new Template();
         echo $view->render('views/personalInformation.html');
     }
@@ -86,7 +93,6 @@ class Controller
     {
         //add global variables
         global $validator;
-        global $dataLayer;
 
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -126,6 +132,12 @@ class Controller
             }
         }
 
+        //make form sticky
+        $this->_f3->set('userBio', isset($userBio) ? $userBio : "");
+        $this->_f3->set('userSeeking', isset($userSeeking) ? $userSeeking : "");
+        $this->_f3->set('userState', isset($userState) ? $userState : "");
+        $this->_f3->set('userBio', isset($userBio) ? $userBio : "");
+
         $view = new Template();
         echo $view->render('views/profile.html');
     }
@@ -147,13 +159,13 @@ class Controller
             if(isset($_POST['indoor'])) {
 
                 //get interests from post array
-                $userIndoorInterests = $_POST['indoorInterests'];
-                $userOutdoorInterests = $_POST['outdoorInterests'];
+                $userIndoor = $_POST['indoorInterests'];
+                $userOutdoor = $_POST['outdoorInterests'];
 
                 //validate indoor activities
-                if(isset($userIndoorInterests)) {
+                if(isset($userIndoor)) {
                     //Data is valid -> Add to session
-                    if ($validator->validIndoor($userIndoorInterests)) {
+                    if ($validator->validIndoor($userIndoor)) {
                         $_SESSION['indoorInterests'] = implode(", ", $_POST['indoorInterests']);
                     } //Data is not valid -> We've been spoofed!
                     else {
@@ -163,9 +175,9 @@ class Controller
             }
 
             //validate outdoor activities
-            if(isset($userOutdoorInterests)) {
+            if(isset($userOutdoor)) {
                 //Data is valid -> Add to session
-                if ($validator->validOutdoor($userOutdoorInterests)) {
+                if ($validator->validOutdoor($userOutdoor)) {
                     $_SESSION['outdoorInterests'] = implode(", ", $_POST['outdoorInterests']);
                 } //Data is not valid -> We've been spoofed!
                 else {
@@ -178,6 +190,9 @@ class Controller
                 $this->_f3->reroute('/summary');
             }
         }
+
+        $this->_f3->set('userIndoor', isset($userIndoor) ? $userIndoor : []);
+        $this->_f3->set('userOutdoor', isset($userOutdoor) ? $userOutdoor : []);
 
         $view = new Template();
         echo $view->render('views/interests.html');
