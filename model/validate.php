@@ -20,11 +20,13 @@ class Validate
      * #param String $name
      * @return boolean
      */
-    function validFname($fname){
+    function validFname($fname)
+    {
         return !empty($fname) && ctype_alpha($fname);
     }
 
-    function validLname($lname){
+    function validLname($lname)
+    {
         return !empty($lname) && ctype_alpha($lname);
     }
 
@@ -35,7 +37,8 @@ class Validate
      * #param number $age
      * @return boolean
      */
-    function validAge($age){
+    function validAge($age)
+    {
         if(is_numeric($age) && 18 <= $age && $age <= 118 ){
             return true;
         }
@@ -49,7 +52,8 @@ class Validate
      * #param number $phone
      * @return boolean
      */
-    function validPhone($phone){
+    function validPhone($phone)
+    {
         if(!empty($phone) && preg_match('/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/', $phone)){
             return true;
         }
@@ -62,7 +66,8 @@ class Validate
      * #param String $email
      * @return boolean
      */
-    function validEmail($email){
+    function validEmail($email)
+    {
         return !empty($email) && preg_match("/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/", $email);
     }
 
@@ -73,7 +78,8 @@ class Validate
      * #param list $choices
      * @return boolean
      */
-    function validOutdoor($selectedOutdoor){
+    function validOutdoor($selectedOutdoor)
+    {
         //Get valid condiments from data layer
         $validOutdoor = $this->_dataLayer->getOutdoor();
 
@@ -97,7 +103,8 @@ class Validate
      * #param list $choices
      * @return boolean
      */
-    function validIndoor($selectedIndoor){
+    function validIndoor($selectedIndoor)
+    {
         //Get valid condiments from data layer
         $validIndoor = $this->_dataLayer->getIndoor();
 
