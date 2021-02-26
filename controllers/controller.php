@@ -19,6 +19,11 @@ class Controller
     {
         //add global variables
         global $validator;
+        global $dataLayer;
+
+        //get array
+        $this->_f3->set('genders', $dataLayer->getGender());
+
 
         //if the form has been submitted
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -132,6 +137,9 @@ class Controller
             }
         }
 
+        //get array
+
+
         //make form sticky
         $this->_f3->set('userBio', isset($userBio) ? $userBio : "");
         $this->_f3->set('userSeeking', isset($userSeeking) ? $userSeeking : "");
@@ -148,19 +156,15 @@ class Controller
         global $validator;
         global $dataLayer;
 
-        //get arrays
-        $this->_f3->set('indoor', $dataLayer->getIndoor());
-        $this->_f3->set('outdoor', $dataLayer->getOutdoor());
-
         //If the form has been submitted
         if ($_SERVER['REQUEST_METHOD']=='POST') {
 
+            //get interests from post array
+            $userIndoor = $_POST['indoorInterests'];
+            $userOutdoor = $_POST['outdoorInterests'];
+
             //If condiments were selected
             if(isset($_POST['indoor'])) {
-
-                //get interests from post array
-                $userIndoor = $_POST['indoorInterests'];
-                $userOutdoor = $_POST['outdoorInterests'];
 
                 //validate indoor activities
                 if(isset($userIndoor)) {
@@ -191,8 +195,9 @@ class Controller
             }
         }
 
-        $this->_f3->set('userIndoor', isset($userIndoor) ? $userIndoor : []);
-        $this->_f3->set('userOutdoor', isset($userOutdoor) ? $userOutdoor : []);
+        //get arrays
+        $this->_f3->set('indoor', $dataLayer->getIndoor());
+        $this->_f3->set('outdoor', $dataLayer->getOutdoor());
 
         $view = new Template();
         echo $view->render('views/interests.html');
@@ -203,5 +208,8 @@ class Controller
 
         $view = new Template();
         echo $view->render('views/summary.html');
+
+        //clear session
+        session_destroy();
     }
 }
