@@ -16,4 +16,8 @@ class DataLayer
     {
         return array("tv", "movies", "cooking", "board games", "puzzle", "reading", "playing cards", "video games");
     }
+
+    function getGender(){
+        return array("male", "female");
+    }
 }
