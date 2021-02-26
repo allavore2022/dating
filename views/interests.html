@@ -32,7 +32,7 @@
         <repeat group="{{ @indoor }}" value="{{ @activityI }}">
             <div class="col-3">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="{{ @activity }}" id="{{ @activityI }}" name="indoorInterests[]">
+                    <input class="form-check-input" type="checkbox" value="{{ @activityI }}" id="{{ @activityI }}" name="indoorInterests[]">
                     <label class="form-check-label" for="{{ @activityI }}"> {{ ucfirst(@activityI) }}</label>
                 </div>
             </div>
@@ -47,7 +47,7 @@
         <repeat group="{{ @outdoor }}" value="{{ @activityO }}">
             <div class="col-3">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="{{ @activity }}" id="{{ @activityO }}" name="outdoorInterests[]">
+                    <input class="form-check-input" type="checkbox" value="{{ @activityO }}" id="{{ @activityO }}" name="outdoorInterests[]">
                     <label class="form-check-label" for="{{ @activityO }}"> {{ ucfirst(@activityO) }}</label>
                 </div>
             </div>

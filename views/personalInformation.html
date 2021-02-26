@@ -58,11 +58,14 @@
                         <!-- Gender -->
                         <div class="form-group">
                             <p><b>Gender: </b></p>
-                            <input type="radio" id="male" name="gender" value="male">
-                            <label class="radio-inline" for="male">Male</label>
+                            <repeat group="{{ @genders }}" value="{{ @gender}}">
+                                <label class="radioFormat">
+                                    <input type="radio" name="gender" id="{{ @gender }}" value="{{ @gender }}"
+                                    <check if="{{ @gender == @userGender}}">checked</check>>
 
-                            <input type="radio" id="female" name="gender" value="female">
-                            <label class="radio-inline" for="female">Female</label>
+                                    {{ ucfirst(@gender) }}
+                                </label>
+                            </repeat>
                         </div>
 
                         <!-- Phone number -->

@@ -46,6 +46,17 @@
 
                     <!-- Seeking -->
                     <div class="form-group">
+                        <p><b>Gender: </b></p>
+                        <repeat group="{{ @genders }}" value="{{ @gender}}">
+                            <label class="radioFormat">
+                                <input type="radio" name="seeking" id="{{ @gender }}" value="{{ @gender }}"
+                                <check if="{{ @gender == @userSeeking}}">checked</check>>
+
+                                {{ ucfirst(@gender) }}
+                            </label>
+                        </repeat>
+                    </div>
+                    <div class="form-group">
                         <p><b>Seeking: </b></p>
                         <input type="radio" id="male" name="seeking" value="male">
                         <label class="radio-inline" for="male">Male</label>
