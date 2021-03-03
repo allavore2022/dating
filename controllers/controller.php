@@ -190,7 +190,7 @@ class Controller
 
             //If condiments were selected
             //if(isset($_POST['indoor'])) {
-            if(isset($_POST['indoorInterests'])) {
+            //if(isset($_POST['indoorInterests'])) {
                 //validate indoor activities
                 if(isset($userIndoor)) {
                     //Data is valid -> Add to session
@@ -203,7 +203,7 @@ class Controller
                         $this->_f3->set('errors["indoor"]', "Go away, evildoer!");
                     }
                 }
-            }
+//            }
 
             //validate outdoor activities
             if(isset($userOutdoor)) {
