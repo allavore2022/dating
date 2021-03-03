@@ -20,6 +20,7 @@ class Controller
         //add global variables
         global $validator;
         global $dataLayer;
+        global $member;
 
         //get array
         $this->_f3->set('genders', $dataLayer->getGender());
@@ -33,12 +34,20 @@ class Controller
             $userGender = $_POST['gender'];
             $userAge = $_POST['age'];
             $userPhone = $_POST['pnumber'];
+            $isPremium = $_POST['isPremium'];
+
+            //check to see if isPremium is checked and create object
+            if(isset($isPremium)){
+                $member = new PremiumMember($userFname, $userLname, $userAge, $userGender, $userPhone);
+            } else {
+                $member = new Member($userFname, $userLname, $userAge, $userGender, $userPhone);
+            }
 
             //if the data is valid --> Store in session
-
             //validate first name
             if($validator->validFname($userFname)){
-                $_SESSION['fname'] = $userFname;
+                //$_SESSION['fname'] = $userFname;
+                $member->setFname($userFname);
             }
             //if data is not valid -> set an error in f3 hive
             else {
@@ -47,7 +56,8 @@ class Controller
 
             //validate last name
             if($validator->validLname($userLname)){
-                $_SESSION['lname'] = $userLname;
+                //$_SESSION['lname'] = $userLname;
+                $member->setLname($userLname);
             }
             //if data is not valid -> set an error in f3 hive
             else {
@@ -56,12 +66,14 @@ class Controller
 
             //validate gender
             if(isset($userGender)){
-                $_SESSION['gender'] = $userGender;
+                //$_SESSION['gender'] = $userGender;
+                $member->setGender($userGender);
             }
 
             //validate age
             if($validator->validAge($userAge)){
-                $_SESSION['age'] = $userAge;
+                //$_SESSION['age'] = $userAge;
+                $member->setAge($userAge);
             }
             //if data is not valid -> set an error in f3 hive
             else {
@@ -70,7 +82,8 @@ class Controller
 
             //validate phone number
             if($validator->validPhone($userPhone)){
-                $_SESSION['pnumber'] = $userPhone;
+                //$_SESSION['pnumber'] = $userPhone;
+                $member->setPhone($userPhone);
             }
             //if data is not valid -> set an error in f3 hive
             else {
@@ -79,6 +92,7 @@ class Controller
 
             //if there are no errors, redirect to /profile
             if(empty($this->_f3->get('errors'))){
+                $_SESSION['member'] = $member;
                 $this->_f3->reroute('/profile');
             }
         }
@@ -99,6 +113,7 @@ class Controller
         //add global variables
         global $validator;
         global $dataLayer;
+        global $member;
 
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -110,7 +125,8 @@ class Controller
 
             //validate email
             if($validator->validEmail($userEmail)){
-                $_SESSION['email'] = $userEmail;
+//                $_SESSION['email'] = $userEmail;
+                $_SESSION['member']->setEmail($userEmail);
             }
             //if data is not valid -> set an error in f3 hive
             else {
@@ -119,22 +135,30 @@ class Controller
 
             //validate state
             if(isset($userState)){
-                $_SESSION['state'] = $userState;
+                //$_SESSION['state'] = $userState;
+                $_SESSION['member']->setState($userState);
             }
 
             //validate seeking
             if(isset($userSeeking)){
-                $_SESSION['seeking'] = $userSeeking;
+//                $_SESSION['seeking'] = $userSeeking;
+                $_SESSION['member']->setSeeking($userSeeking);
             }
 
             //validate bio
             if(isset($userBio)){
-                $_SESSION['bio'] = $userBio;
+//                $_SESSION['bio'] = $userBio;
+                $_SESSION['member']->setBio($userBio);
             }
 
             //if there are no errors, redirect to /profile
             if(empty($this->_f3->get('errors'))){
-                $this->_f3->reroute('/interests');
+                if ($_SESSION['member'] instanceof PremiumMember) {
+                    //                $_SESSION['member'] = $member;
+                    $this->_f3->reroute('/interests');
+                } else {
+                    $this->_f3->reroute('/summary');
+                }
             }
         }
 
@@ -171,7 +195,9 @@ class Controller
                 if(isset($userIndoor)) {
                     //Data is valid -> Add to session
                     if ($validator->validIndoor($userIndoor)) {
-                        $_SESSION['indoorInterests'] = implode(", ", $_POST['indoorInterests']);
+                        //$_SESSION['indoorInterests'] = implode(", ", $_POST['indoorInterests']);
+                        $indoorList = implode(", ", $_POST['indoorInterests']);
+                        $_SESSION['member']->setInDoorInterests($indoorList);
                     } //Data is not valid -> We've been spoofed!
                     else {
                         $this->_f3->set('errors["indoor"]', "Go away, evildoer!");
@@ -183,7 +209,9 @@ class Controller
             if(isset($userOutdoor)) {
                 //Data is valid -> Add to session
                 if ($validator->validOutdoor($userOutdoor)) {
-                    $_SESSION['outdoorInterests'] = implode(", ", $_POST['outdoorInterests']);
+//                    $_SESSION['outdoorInterests'] = implode(", ", $_POST['outdoorInterests']);
+                    $outdoorList = implode(", ", $_POST['outdoorInterests']);
+                    $_SESSION['member']->setOutDoorInterests($outdoorList);
                 } //Data is not valid -> We've been spoofed!
                 else {
                     $this->_f3->set('errors["outdoor"]', "Go away, evildoer!");
