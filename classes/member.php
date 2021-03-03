@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * Class Member represents a member of a dating site
+ *
+ * The member class represents a Member with a first name, last name,
+ * age, gender, phone number, email, state, seeking and bio.
+ *
+ * @author Alisa Llavore <allvore@mail.greenriver.edu>
+ * @copyright 2021
+ */
+
 class Member
 {
     private $_fname;

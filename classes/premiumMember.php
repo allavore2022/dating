@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * Class PremiumMember represents a premiumMember of a dating site
+ *
+ * The PremiumMember class is only accessible to members that check they want to
+ * sign up for a premium membership. They then have access to our interests route that
+ * utilizes these methods
+ *
+ * @author Alisa Llavore <allvore@mail.greenriver.edu>
+ * @copyright 2021
+ */
+
 class PremiumMember extends Member
 {
     private $_inDoorInterests;

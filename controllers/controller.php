@@ -1,4 +1,8 @@
 <?php
+/* model/controller.php
+ * Contains functions for dating app
+ *
+ */
 
 class Controller
 {
