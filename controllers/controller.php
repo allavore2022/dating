@@ -98,6 +98,7 @@ class Controller
     {
         //add global variables
         global $validator;
+        global $dataLayer;
 
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -138,7 +139,7 @@ class Controller
         }
 
         //get array
-
+        $this->_f3->set('genders', $dataLayer->getGender());
 
         //make form sticky
         $this->_f3->set('userBio', isset($userBio) ? $userBio : "");

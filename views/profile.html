@@ -41,12 +41,12 @@
                     <!-- State -->
                     <div class="form-group">
                         <label for="state"><b>State: </b></label>
-                        <input type="text" class="form-control" id="state" name = "state" placeholder="Enter your state">
+                        <input type="text" class="form-control" id="state" name = "state" placeholder="Enter your state" value="{{ @userState }}">
                     </div>
 
                     <!-- Seeking -->
                     <div class="form-group">
-                        <p><b>Gender: </b></p>
+                        <p><b>Seeking: </b></p>
                         <repeat group="{{ @genders }}" value="{{ @gender}}">
                             <label class="radioFormat">
                                 <input type="radio" name="seeking" id="{{ @gender }}" value="{{ @gender }}"
@@ -56,14 +56,6 @@
                             </label>
                         </repeat>
                     </div>
-                    <div class="form-group">
-                        <p><b>Seeking: </b></p>
-                        <input type="radio" id="male" name="seeking" value="male">
-                        <label class="radio-inline" for="male">Male</label>
-
-                        <input type="radio" id="female" name="seeking" value="female">
-                        <label class="radio-inline" for="female">Female</label>
-                    </div>
 
 
             </div>
@@ -72,7 +64,7 @@
                 <!-- Biography -->
                 <div class="form-group">
                     <label for="bio">Biography </label>
-                    <textarea class="form-control rounded-0" id="bio" name="bio" rows="5"></textarea>
+                    <textarea class="form-control rounded-0" id="bio" name="bio" rows="5" value="{{ @userBio }}"></textarea>
                 </div>
                 <div class="text-right">
                     <button type="submit" class="btn btn-info btn-lg rounded ">Next</button>
