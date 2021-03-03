@@ -19,7 +19,6 @@ session_start();
 $f3 = Base::instance();
 $validator = new Validate();
 $dataLayer = new DataLayer();
-$member = new Member();
 $controller = new Controller($f3);
 
 $f3->set('DEBUG', 3);
