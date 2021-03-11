@@ -7,6 +7,35 @@
 
 class DataLayer
 {
+    ////////////// DATING V FUNCTIONS /////////////////////
+
+    private $_dbh;
+
+    function __construct($dbh)
+    {
+        $this->_dbh = $dbh;
+    }
+
+    function insertMember()
+    {
+
+    }
+
+    function getMembers()
+    {
+
+    }
+
+    function getMember($member_id)
+    {
+
+    }
+
+    function getInterests($member_id)
+    {
+
+    }
+
     /** getOutdoor() returns an array of outdoor activities
      *  @return array
      */
