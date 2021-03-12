@@ -10,7 +10,7 @@ class Validate
 
     function __construct()
     {
-        $this->_dataLayer = new DataLayer();
+        $this->_dataLayer = new DataLayer($dbh);
     }
 
     /**
