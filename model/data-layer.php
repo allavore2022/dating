@@ -49,7 +49,7 @@ class DataLayer
     function getMembers()
     {
         //define the query
-        $sql = "SELECT * FROM member";
+        $sql = "SELECT * FROM member ORDER BY lname";
 
         //Prepare the statement
         $statement = $this->_dbh->prepare($sql);
