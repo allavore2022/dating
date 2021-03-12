@@ -15,10 +15,13 @@ require_once('vendor/autoload.php');
 //Start a session
 session_start();
 
+//connect to database
+require $_SERVER['DOCUMENT_ROOT'] . '/../config.php';
+
 //Instantiate my classes
 $f3 = Base::instance();
 $validator = new Validate();
-$dataLayer = new DataLayer();
+$dataLayer = new DataLayer($dbh);
 $controller = new Controller($f3);
 
 $f3->set('DEBUG', 3);
@@ -52,6 +55,13 @@ $f3->route('GET|POST /summary', function() {
 
     global $controller;
     $controller->summary();
+});
+
+//Define a admin route
+$f3->route('GET /admin', function() {
+
+    global $controller;
+    $controller->admin();
 });
 //Rune fat free
 $f3->run();
