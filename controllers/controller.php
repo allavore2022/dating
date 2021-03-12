@@ -238,6 +238,8 @@ class Controller
 
     function summary()
     {
+        global $dataLayer;
+        $dataLayer->insertMember($_SESSION['member']);
 
         $view = new Template();
         echo $view->render('views/summary.html');
@@ -245,4 +247,16 @@ class Controller
         //clear session
         session_destroy();
     }
+
+    function admin()
+    {
+        global $dataLayer;
+
+        $members_table = $dataLayer->getMembers();
+        $this->_f3->set('members', $members_table);
+
+        $view = new Template();
+        echo $view->render('views/admin.html');
+    }
+
 }
