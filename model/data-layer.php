@@ -65,12 +65,43 @@ class DataLayer
 
     function getMember($member_id)
     {
+        //define the query
+        $sql = "SELECT * FROM member WHERE member_id = :member_id";
+
+        //Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //bind the parameters
+        $statement->bindParam(":member", $member_id, PDO::PARAM_STR);
+
+        //execute
+        $statement->execute();
+
+        //return the result
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
 
     }
 
     function getInterests($member_id)
     {
+        //define the query
+        $sql = "SELECT interests FROM member WHERE member_id = :member_id";
 
+        //Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //bind the parameters
+        $statement->bindParam(":member", $member_id, PDO::PARAM_STR);
+
+        //execute
+        $statement->execute();
+
+        //return the result
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
     }
 
     /** getOutdoor() returns an array of outdoor activities
