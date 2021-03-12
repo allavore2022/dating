@@ -20,6 +20,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-info bg-info">
         <a class="navbar-brand text-white" href="{{ @BASE }}">Animal Crossing Dating Website</a>
+        <a class="navbar-brand text-white ml-auto" href="admin">Admin</a>
     </nav>
 
     <div class="container pt-3">
@@ -71,7 +72,7 @@
                         <!-- Phone number -->
                         <div class="form-group">
                             <label for="pnumber"><b>Phone Number: </b></label>
-                            <input type="tel" class="form-control" id="pnumber" name = "pnumber" placeholder="Enter your phone number" value="{{ @userPhone }}">
+                            <input type="text" class="form-control" id="pnumber" name = "pnumber" placeholder="Enter your phone number" value="{{ @userPhone }}">
                             <check if="{{ isset(@errors['pnumber']) }}">
                                 {{ @errors['pnumber'] }}
                             </check>

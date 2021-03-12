@@ -20,6 +20,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-info bg-info">
         <a class="navbar-brand text-white" href="{{ @BASE }}">Animal Crossing Dating Website</a>
+        <a class="navbar-brand text-white ml-auto" href="admin">Admin</a>
     </nav>
 
     <div class="container border p-3 rounded">
@@ -28,7 +29,7 @@
                 <table class="table table-bordered table-curved">
                     <tbody>
                         <tr>
-                            <td>Name: {{ @SESSION.member->getFname() }} {{ @SESSION.member->getFname() }}</td>
+                            <td>Name: {{ @SESSION.member->getFname() }} {{ @SESSION.member->getLname() }}</td>
                         </tr>
                         <tr>
                             <td>Gender: {{ @SESSION.member->getGender() }}</td>
@@ -49,7 +50,9 @@
                             <td>Seeking: {{ @SESSION.member->getSeeking() }}</td>
                         </tr>
                         <tr>
-                            <td>Interests: {{ @SESSION.member->getInDoorInterests() }}  {{ @SESSION.member->getOutDoorInterests() }}</td>
+                            <check if="{{ @SESSION.member instanceOf PremiumMember}}">
+                                <td>Interests: {{ @SESSION.member->getInDoorInterests() }}  {{ @SESSION.member->getOutDoorInterests() }}</td>
+                            </check>
                         </tr>
                     </tbody>
                 </table>
