@@ -117,7 +117,6 @@ class Controller
         //add global variables
         global $validator;
         global $dataLayer;
-        global $member;
 
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
 

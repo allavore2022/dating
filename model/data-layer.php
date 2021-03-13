@@ -38,8 +38,9 @@ class DataLayer
 
         $premium = $member instanceof PremiumMember ? 1 : 0;
         $statement->bindParam(":premium", $premium, PDO::PARAM_INT);
-        $statement->bindParam(":interests", $member->getOutDoorInterests(), PDO::PARAM_STR);
 
+        $interests =  $member->getInDoorInterests() . $member->getOutDoorInterests();
+        $statement->bindParam(":interests", $interests, PDO::PARAM_STR);
 
         //execute
         $statement->execute();
