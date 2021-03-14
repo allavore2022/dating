@@ -11,11 +11,20 @@ class DataLayer
 
     private $_dbh;
 
+    /**
+     * DataLayer constructor that creates a new database object
+     * @param $dbh
+     */
     function __construct($dbh)
     {
         $this->_dbh = $dbh;
     }
 
+    /**
+     * insertMember() takes in a member object then stores it
+     * to the database
+     * @param $member
+     */
     function insertMember($member)
     {
         //define the query
@@ -35,18 +44,22 @@ class DataLayer
         $statement->bindParam(":state", $member->getState(), PDO::PARAM_STR);
         $statement->bindParam(":seeking", $member->getSeeking(), PDO::PARAM_STR);
         $statement->bindParam(":bio", $member->getBio(), PDO::PARAM_STR);
-
+        //if a member is a premium member then store it as a 1 in the database
         $premium = $member instanceof PremiumMember ? 1 : 0;
         $statement->bindParam(":premium", $premium, PDO::PARAM_INT);
-
-        $interests =  $member->getInDoorInterests() . $member->getOutDoorInterests();
+        //if a member is a premium member then set interests as a list. If not save it as an empty string
+        $interests = $premium ? $member->getInDoorInterests() . $member->getOutDoorInterests() : "";
         $statement->bindParam(":interests", $interests, PDO::PARAM_STR);
 
         //execute
         $statement->execute();
     }
 
-
+    /**
+     * getMembers() returns all the data from the member table
+     * sorted by last name.
+     * @return mixed
+     */
     function getMembers()
     {
         //define the query
@@ -64,6 +77,12 @@ class DataLayer
         return $result;
     }
 
+    /**
+     * getMember() returns a specific member's information
+     * from the database using their member_id
+     * @param $member_id
+     * @return mixed
+     */
     function getMember($member_id)
     {
         //define the query
@@ -85,6 +104,12 @@ class DataLayer
 
     }
 
+    /**
+     * getInterests() returns a member's interests from the database
+     * using their id.
+     * @param $member_id
+     * @return mixed
+     */
     function getInterests($member_id)
     {
         //define the query

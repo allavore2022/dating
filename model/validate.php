@@ -54,7 +54,7 @@ class Validate
      */
     function validPhone($phone)
     {
-        if(!empty($phone) && preg_match('/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/', $phone)){
+        if(!empty($phone) && preg_match('/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/', $phone) && strlen($phone)==10){
             return true;
         }
         return false;

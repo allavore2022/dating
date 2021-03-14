@@ -13,12 +13,18 @@ class Controller
         $this->_f3 = $f3;
     }
 
+    /**
+     * Display home page
+     */
     function home()
     {
         $view = new Template();
         echo $view->render('views/home.html');
     }
 
+    /**
+     * Display personal information page
+     */
     function personalInformation()
     {
         //add global variables
@@ -112,6 +118,9 @@ class Controller
         echo $view->render('views/personalInformation.html');
     }
 
+    /**
+     * Display profle page
+     */
     function profile()
     {
         //add global variables
@@ -178,6 +187,9 @@ class Controller
         echo $view->render('views/profile.html');
     }
 
+    /**
+     * Display interests page
+     */
     function interests()
     {
         //add global variables
@@ -191,22 +203,19 @@ class Controller
             $userIndoor = $_POST['indoorInterests'];
             $userOutdoor = $_POST['outdoorInterests'];
 
-            //If condiments were selected
-            //if(isset($_POST['indoor'])) {
-            //if(isset($_POST['indoorInterests'])) {
-                //validate indoor activities
-                if(isset($userIndoor)) {
-                    //Data is valid -> Add to session
-                    if ($validator->validIndoor($userIndoor)) {
-                        //$_SESSION['indoorInterests'] = implode(", ", $_POST['indoorInterests']);
-                        $indoorList = implode(", ", $_POST['indoorInterests']);
-                        $_SESSION['member']->setInDoorInterests($indoorList);
-                    } //Data is not valid -> We've been spoofed!
-                    else {
-                        $this->_f3->set('errors["indoor"]', "Go away, evildoer!");
-                    }
+
+            //validate indoor activities
+            if(isset($userIndoor)) {
+                //Data is valid -> Add to session
+                if ($validator->validIndoor($userIndoor)) {
+                    //$_SESSION['indoorInterests'] = implode(", ", $_POST['indoorInterests']);
+                    $indoorList = implode(", ", $_POST['indoorInterests']);
+                    $_SESSION['member']->setInDoorInterests($indoorList);
+                } //Data is not valid -> We've been spoofed!
+                else {
+                    $this->_f3->set('errors["indoor"]', "Go away, evildoer!");
                 }
-//            }
+            }
 
             //validate outdoor activities
             if(isset($userOutdoor)) {
@@ -235,6 +244,9 @@ class Controller
         echo $view->render('views/interests.html');
     }
 
+    /**
+     * Display summary page
+     */
     function summary()
     {
         global $dataLayer;
@@ -247,6 +259,9 @@ class Controller
         session_destroy();
     }
 
+    /**
+     * Display admin page
+     */
     function admin()
     {
         global $dataLayer;
